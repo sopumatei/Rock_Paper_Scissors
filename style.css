@@ -15,3 +15,12 @@ html {
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    min-height: 100vh;
+}
+
