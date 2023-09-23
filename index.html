@@ -7,7 +7,7 @@
     </head>
     <body>
         <header>
-            <h1 id="header-hitle">Rock, Paper, Scissors</h1>
+            <h1 id="header-hitle">Rock Paper Scissors</h1>
         </header>
 
         <main>
@@ -29,5 +29,17 @@
 
             <h3 id="round-result-message">YOU WIN</h3>
         </main>
+
+        <footer>
+            <h4 id="footer-text"></h4>
+        </footer>
+
+        <script>
+            const footerEl = document.getElementById('footer-text')
+            const date = new Date()
+            const currentYear = date.getFullYear()
+            
+            footerEl.textContent = `2023-${currentYear} Rock Paper Scissors by Sopu Matei`
+        </script>
     </body>
 </html>
