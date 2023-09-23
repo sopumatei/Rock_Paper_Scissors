@@ -71,10 +71,25 @@ header {
 }
 
 /* GAME SECTION */
+
+/* VERSUS CONTAINER */
+#versus-container {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+#versus-container {
+    color: #facd60;
+}
+
+#versus-container img {
+    height: 128px;
+    width: 128px;
+}
+
 main {
-    margin-top: 5rem;
     flex: 0.5;
-    /* background-color: aqua; */
 
     display: flex;
     justify-content: space-around;
@@ -84,6 +99,7 @@ main {
 }
 
 main h2, main h3 {
+    display: inline-block;
     color: #fb7756;
 }
 

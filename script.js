@@ -81,27 +81,58 @@ function playRound(playerSelection) {
     console.log(`Computer Choice: ${computerChoice}`);
     roundResultTxt.textContent = roundMessage;
 
-    if(roundMessage === "ROUND WIN")
-        ++playerScore;
-    else if(roundMessage === "ROUND LOST")
-        ++computerScore;
+    setIcons(playerChoice, computerChoice);
 
-    changeScore();
+    setTimeout(() => {
+        playerIcon.setAttribute('src', '');
+        computerIcon.setAttribute('src', '');
 
-    if(currentRound === rounds) {
-        if(playerScore > computerScore)
-            gameResultTxt.textContent = "YOU WIN";
-        else if(playerScore === computerScore)
-            gameResultTxt.textContent = "DRAW";
-        else
-            gameResultTxt.textContent = "YOU LOST";
-        ++currentRound;
-    }
-    else {
-        ++currentRound;
-        changeRound();
-    }
-    canClick = true;
+        if(roundMessage === "ROUND WIN")
+            ++playerScore;
+        else if(roundMessage === "ROUND LOST")
+            ++computerScore;
+
+        changeScore();
+
+        if(currentRound === rounds) {
+            if(playerScore > computerScore)
+                gameResultTxt.textContent = "YOU WIN";
+            else if(playerScore === computerScore)
+                gameResultTxt.textContent = "DRAW";
+            else
+                gameResultTxt.textContent = "YOU LOST";
+            ++currentRound;
+        }
+        else {
+            ++currentRound;
+            changeRound();
+        }
+        canClick = true;
+    }, 600)
+}
+
+// Icon Elements
+const playerIcon = document.getElementById('player-icon');
+const computerIcon = document.getElementById('computer-icon');
+
+const rockIcon = './img/stone.png';
+const paperIcon = './img/paper.png';
+const scissorsIcon = './img/scissor.png';
+
+// Gets the icons of weapons
+function getIcon(selection) {
+    if(selection === 'S')
+        return scissorsIcon;
+    else if(selection === 'R')
+        return rockIcon;
+    else if(selection === 'P')
+        return paperIcon;
+}
+
+// Sets the icons of weapons
+function setIcons(playerSelection, computerSelection) {
+    playerIcon.setAttribute('src', getIcon(playerSelection));
+    computerIcon.setAttribute('src', getIcon(computerSelection));
 }
 
 // Buttons Events
