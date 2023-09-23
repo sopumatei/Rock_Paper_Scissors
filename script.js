@@ -15,6 +15,16 @@ let currentRound = 1;
 let computerScore = 0;
 let playerScore = 0;
 
+const playerScoreTxt = document.getElementById('player-score');
+const computerScoreTxt = document.getElementById('computer-score');
+
+function changeScore() {
+    playerScoreTxt.textContent = `Player: ${playerScore}`;
+    computerScoreTxt.textContent = `Computer: ${computerScore}`;
+}
+
+changeScore();
+
 // Play Round
 let canClick = true;
 
@@ -84,6 +94,8 @@ function playRound(playerSelection) {
         ++playerScore;
     else if(roundMessage === "ROUND LOST")
         ++computerScore;
+
+    changeScore();
 
     if(currentRound === rounds) {
         if(playerScore > computerScore)
