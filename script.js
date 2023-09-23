@@ -1,91 +1,123 @@
-function game() {
-    const rounds = 5;
-    let currentRound = 1;
+// Weapon Buttons
+const rockButton = document.getElementById('rock-button');
+const paperButton = document.getElementById('paper-button');
+const scissorsButton = document.getElementById('scissors-button');
 
-    // Scores
-    let computerScore = 0;
-    let playerScore = 0;
+// Text Elements
+const roundResultTxt = document.getElementById('round-result-message');
+const gameResultTxt = document.getElementById('game-result-message')
 
-    // Play Round
-    function playRound() {
-        console.log(`%c ROUND ${currentRound}`, "font-size: 35px; color: powderblue;");
+// Rounds Elements
+const rounds = 5;
+let currentRound = 1;
 
-        // Computer Choice
-        function getComputerChoice() {
-            const options = ["R", "P", "S"];
-            const randomIndex = Math.floor(Math.random() * options.length);
+// Scores
+let computerScore = 0;
+let playerScore = 0;
 
-            return options[randomIndex];
-        }
-        let computerChoice = getComputerChoice();
+// Play Round
+let canClick = true;
 
-        // Player Choice
-        let playerChoice = prompt("Select your weapon for this round (rock, paper or scissors): ");
+function playRound(playerSelection) {
+    console.log(`%c ROUND ${currentRound}`, "font-size: 35px; color: powderblue;");
 
-        // Verifies if the choice from the user is valid
-        function isOptionValid(option) {
-            if(option.toUpperCase() != 'ROCK' && option.toUpperCase() != 'PAPER' && option.toUpperCase() != 'SCISSORS')
-                return false;
+    // Computer Choice
+    function getComputerChoice() {
+        const options = ["R", "P", "S"];
+        const randomIndex = Math.floor(Math.random() * options.length);
 
-            return true;
-        }
+        return options[randomIndex];
+    }
+    let computerChoice = getComputerChoice();
 
-        if(isOptionValid(playerChoice))
-            playerChoice = playerChoice[0].toUpperCase();
-        else {
-            console.warn("OPTION INVALID");
-            return;
-        }
+    // Player Choice
+    let playerChoice = playerSelection[0].toUpperCase();
 
-        // Get the round result
-        let roundMessage = null;
+    // Verifies if the choice from the user is valid
+    /* function isOptionValid(option) {
+        if(option.toUpperCase() != 'ROCK' && option.toUpperCase() != 'PAPER' && option.toUpperCase() != 'SCISSORS')
+            return false;
 
-        // DRAW CASE
-        if(playerChoice === computerChoice) {
-            //console.log(playerChoice + " " + computerChoice);
-            roundMessage = "ROUND DRAW";
-        }
+        return true;
+    }
 
-        //ROCK vs SCISSORS
-        if(playerChoice === 'R' && computerChoice === 'S')
-            roundMessage =  "ROUND WIN";
-        else if(playerChoice === 'S' && computerChoice === 'R')
-            roundMessage =  "ROUND LOST";
-        
-        // ROCK vs PAPER
-        if(playerChoice === 'R' && computerChoice === 'P')
-            roundMessage =  "ROUND LOST";
-        else if(playerChoice === 'P' && computerChoice === 'R')
-            roundMessage =  "ROUND WIN";
+    if(isOptionValid(playerChoice))
+        playerChoice = playerChoice[0].toUpperCase();
+    else {
+        console.warn("OPTION INVALID");
+        return;
+    } */
 
-        // PAPER vs SCISSORS
-        if(playerChoice === 'P' && computerChoice === 'S')
-            roundMessage =  "ROUND LOST";
-        else if(playerChoice === 'S' && computerChoice === 'P')
-            roundMessage =  "ROUND WIN";
+    // Get the round result
+    let roundMessage = null;
 
-        // Round Result
-        console.log(`Player Choice: ${playerChoice}`);
-        console.log(`Computer Choice: ${computerChoice}`);
-        console.log(roundMessage);
+    // DRAW CASE
+    if(playerChoice === computerChoice) {
+        //console.log(playerChoice + " " + computerChoice);
+        roundMessage = "ROUND DRAW";
+    }
 
-        if(roundMessage === "ROUND WIN")
-            ++playerScore;
-        else if(roundMessage === "ROUND LOST")
-            ++computerScore;
+    //ROCK vs SCISSORS
+    if(playerChoice === 'R' && computerChoice === 'S')
+        roundMessage =  "ROUND WIN";
+    else if(playerChoice === 'S' && computerChoice === 'R')
+        roundMessage =  "ROUND LOST";
+    
+    // ROCK vs PAPER
+    if(playerChoice === 'R' && computerChoice === 'P')
+        roundMessage =  "ROUND LOST";
+    else if(playerChoice === 'P' && computerChoice === 'R')
+        roundMessage =  "ROUND WIN";
 
+    // PAPER vs SCISSORS
+    if(playerChoice === 'P' && computerChoice === 'S')
+        roundMessage =  "ROUND LOST";
+    else if(playerChoice === 'S' && computerChoice === 'P')
+        roundMessage =  "ROUND WIN";
+
+    // Round Result
+    console.log(`Player Choice: ${playerChoice}`);
+    console.log(`Computer Choice: ${computerChoice}`);
+    roundResultTxt.textContent = roundMessage;
+
+    if(roundMessage === "ROUND WIN")
+        ++playerScore;
+    else if(roundMessage === "ROUND LOST")
+        ++computerScore;
+
+    if(currentRound === rounds) {
+        if(playerScore > computerScore)
+            gameResultTxt.textContent = "YOU WIN";
+        else if(playerScore === computerScore)
+            gameResultTxt.textContent = "DRAW";
+        else
+            gameResultTxt.textContent = "YOU LOST";
         ++currentRound;
-    } 
-
-    while(currentRound <= rounds)
-        playRound();
-
-    if(playerScore > computerScore)
-        console.log("%c YOU WIN", "font-size: 35px; color: green;");
-    else if(playerScore == computerScore)
-        console.log("%c DRAW", "font-size: 35px; color: orange;");
-    else 
-        console.log("%c YOU LOST", "font-size: 35px; color: red;");
+    }
+    else {
+        ++currentRound;
+    }
+    canClick = true;
 }
 
-game();
+// Buttons Events
+rockButton.addEventListener('click', () => {
+    if(canClick === true && currentRound <= rounds) {
+        canClick = false;
+        playRound('rock');
+    }
+})
+
+scissorsButton.addEventListener('click', () => {
+    if(canClick === true && currentRound <= rounds) {
+        canClick = false;
+        playRound('scissors');
+    }
+})
+
+paperButton.addEventListener('click', () => {
+    if(canClick === true && currentRound <= rounds) {
+        canClick = false;
+        playRound('paper');
+    }
+})
