@@ -54,9 +54,10 @@ header {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    gap: 0.5em;
 }
 
-#header-title {
+#header-title, #round-text {
     color: #fb7756;
 }
 

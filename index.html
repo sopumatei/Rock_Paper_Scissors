@@ -8,9 +8,12 @@
     </head>
     <body>
         <header>
-            <h1 id="header-hitle">Rock Paper Scissors</h1>
-            <h3 id="player-score">You: blank</h3>
-            <h3 id="computer-score">Computer: blank</h3>
+            <h1 id="header-title">Rock Paper Scissors</h1>
+            <div id="score-container">
+                <h3 id="player-score">You: blank</h3>
+                <h3 id="computer-score">Computer: blank</h3>
+            </div>
+            <h2 id="round-text">Round 1</h2>
         </header>
 
         <main>
@@ -30,9 +33,9 @@
                 </li>
             </ul>
 
-            <h3 id="round-result-message">BLANK</h3>
+            <h3 id="round-result-message"></h3>
 
-            <h2 id="game-result-message">BLANK</h2>
+            <h2 id="game-result-message"></h2>
         </main>
 
         <footer>
@@ -44,7 +47,7 @@
             const date = new Date()
             const currentYear = date.getFullYear()
             
-            footerEl.textContent = `2023-${currentYear} Rock Paper Scissors by Sopu Matei`
+            footerEl.textContent = `2023-${currentYear} © Rock Paper Scissors by Sopu Matei`
         </script>
 
         <script src="./script.js"></script>

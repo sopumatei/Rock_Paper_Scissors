@@ -10,6 +10,12 @@ const gameResultTxt = document.getElementById('game-result-message')
 // Rounds Elements
 const rounds = 5;
 let currentRound = 1;
+const roundTxt = document.getElementById('round-text');
+
+function changeRound() {
+    roundTxt.textContent = `Round ${currentRound}`;
+}
+changeRound();
 
 // Scores
 let computerScore = 0;
@@ -42,21 +48,6 @@ function playRound(playerSelection) {
 
     // Player Choice
     let playerChoice = playerSelection[0].toUpperCase();
-
-    // Verifies if the choice from the user is valid
-    /* function isOptionValid(option) {
-        if(option.toUpperCase() != 'ROCK' && option.toUpperCase() != 'PAPER' && option.toUpperCase() != 'SCISSORS')
-            return false;
-
-        return true;
-    }
-
-    if(isOptionValid(playerChoice))
-        playerChoice = playerChoice[0].toUpperCase();
-    else {
-        console.warn("OPTION INVALID");
-        return;
-    } */
 
     // Get the round result
     let roundMessage = null;
@@ -108,6 +99,7 @@ function playRound(playerSelection) {
     }
     else {
         ++currentRound;
+        changeRound();
     }
     canClick = true;
 }
