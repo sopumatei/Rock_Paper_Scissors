@@ -107,8 +107,8 @@ header {
     transform: rotate(360deg);
     opacity: 0;
 
-    height: 128px;
-    width: 128px;
+    height: 90px;
+    width: 90px;
 
     transition: transform 0.15s ease-in-out;
 }
@@ -278,4 +278,29 @@ footer {
         opacity: 0;
     }
 }
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 300px) {
+    html {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 380px) {
+    html {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    html {
+        font-size: 1.5rem;
+    }
+
+    #versus-container img {
+        height: 124px;
+        width: 124px;
+    }
+} 
 
