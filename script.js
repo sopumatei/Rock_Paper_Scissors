@@ -80,39 +80,59 @@ function playRound(playerSelection) {
     console.log(`Player Choice: ${playerChoice}`);
     console.log(`Computer Choice: ${computerChoice}`);
 
-    roundResultTxt.className = 'text-in-animation';
-    roundResultTxt.textContent = roundMessage;
-
+    // Icon Show
     setIcons(playerChoice, computerChoice);
+    playerIcon.className = 'icon-in-animation';
+    computerIcon.className = 'icon-in-animation';
+
+    setTimeout(() => {
+        if(roundMessage === "ROUND WIN") {
+            ++playerScore;
+            playerIcon.className = 'icon-highlight-animation';
+        }
+        else if(roundMessage === "ROUND LOST") {
+            ++computerScore;
+            computerIcon.className = 'icon-highlight-animation';
+        }
+
+        setTimeout(() => {
+            roundResultTxt.className = 'text-in-animation';
+            roundResultTxt.textContent = roundMessage;
+        }, 300);
+    }, 500);
 
     setTimeout(() => {
         roundResultTxt.className = 'text-out-animation';
-        playerIcon.setAttribute('src', '');
-        computerIcon.setAttribute('src', '');
 
-        if(roundMessage === "ROUND WIN")
-            ++playerScore;
-        else if(roundMessage === "ROUND LOST")
-            ++computerScore;
+        setTimeout(() => {
+            changeScore();
 
-        changeScore();
+            playerIcon.className = 'icon-out-animation';
+            computerIcon.className = 'icon-out-animation';
+            setTimeout(() => {
+                playerIcon.setAttribute('src', '');
+                computerIcon.setAttribute('src', '');
 
-        if(currentRound === rounds) {
-            if(playerScore > computerScore)
-                gameResultTxt.textContent = "YOU WIN";
-            else if(playerScore === computerScore)
-                gameResultTxt.textContent = "DRAW";
-            else
-                gameResultTxt.textContent = "YOU LOST";
-            ++currentRound;
+                if(currentRound === rounds) {
+                    if(playerScore > computerScore)
+                        gameResultTxt.textContent = "YOU WIN";
+                    else if(playerScore === computerScore)
+                        gameResultTxt.textContent = "DRAW";
+                    else
+                        gameResultTxt.textContent = "YOU LOST";
+                    ++currentRound;
+        
+                    gameResultTxt.className = 'text-in-animation';
+                }
+                else {
+                    ++currentRound;
+                    changeRound();
+                }
+                canClick = true;
+            }, 300);
 
-            gameResultTxt.className = 'text-in-animation';
-        }
-        else {
-            ++currentRound;
-            changeRound();
-        }
-        canClick = true;
+        }, 400) 
+        
     }, 1500)
 }
 

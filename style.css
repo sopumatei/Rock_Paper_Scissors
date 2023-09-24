@@ -104,8 +104,13 @@ header {
 }
 
 #versus-container img {
+    transform: rotate(360deg);
+    opacity: 0;
+
     height: 128px;
     width: 128px;
+
+    transition: transform 0.15s ease-in-out;
 }
 
 main {
@@ -144,6 +149,85 @@ main h1, main h2 {
 #game-result-message {
     transform: scale(0);
     opacity: 0;
+}
+
+/* FOOTER SECTION */
+footer {
+    color: #facd60;
+}
+
+/* ANIMATIONS */
+
+/* ICON ANIMATION */ 
+.icon-in-animation {
+    animation-name: iconIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes iconIn {
+    0% {
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+
+    55% {
+        transform: rotate(180deg);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: rotate(0);
+        opacity: 1;
+    }
+}
+
+.icon-out-animation {
+    animation-name: iconOut;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes iconOut {
+    0% {
+        transform: rotate(0);
+        opacity: 1;
+    }
+
+    55% {
+        transform: rotate(180deg);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.icon-highlight-animation {
+    animation-name: iconHighLight;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes iconHighLight {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* TEXT ANIMATION */
@@ -193,10 +277,5 @@ main h1, main h2 {
         transform: scale(0);
         opacity: 0;
     }
-}
-
-/* FOOTER SECTION */
-footer {
-    color: #facd60;
 }
 
