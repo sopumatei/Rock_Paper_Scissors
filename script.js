@@ -79,11 +79,14 @@ function playRound(playerSelection) {
     // Round Result
     console.log(`Player Choice: ${playerChoice}`);
     console.log(`Computer Choice: ${computerChoice}`);
+
+    roundResultTxt.className = 'text-in-animation';
     roundResultTxt.textContent = roundMessage;
 
     setIcons(playerChoice, computerChoice);
 
     setTimeout(() => {
+        roundResultTxt.className = 'text-out-animation';
         playerIcon.setAttribute('src', '');
         computerIcon.setAttribute('src', '');
 
@@ -102,13 +105,15 @@ function playRound(playerSelection) {
             else
                 gameResultTxt.textContent = "YOU LOST";
             ++currentRound;
+
+            gameResultTxt.className = 'text-in-animation';
         }
         else {
             ++currentRound;
             changeRound();
         }
         canClick = true;
-    }, 600)
+    }, 1500)
 }
 
 // Icon Elements

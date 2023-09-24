@@ -118,7 +118,7 @@ main {
     gap: 1rem;
 }
 
-main h2, main h3 {
+main h1, main h2 {
     display: inline-block;
     color: #fb7756;
 }
@@ -133,6 +133,66 @@ main h2, main h3 {
     gap: 0.5em;
 
     list-style: none;
+}
+
+/* RESULT MESSAGES */
+#round-result-message {
+    transform: scale(0);
+    opacity: 0;
+}
+
+#game-result-message {
+    transform: scale(0);
+    opacity: 0;
+}
+
+/* TEXT ANIMATION */
+.text-in-animation {
+    animation-name: textIn;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes textIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    55% {
+        transform: scale(1.2);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.text-out-animation {
+    animation-name: textOut;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes textOut {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    55% {
+        transform: scale(1.2);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
 }
 
 /* FOOTER SECTION */
