@@ -3,6 +3,9 @@ const rockButton = document.getElementById('rock-button');
 const paperButton = document.getElementById('paper-button');
 const scissorsButton = document.getElementById('scissors-button');
 
+// Reset Button
+const resetButton = document.getElementById('reset-button');
+
 // Text Elements
 const roundResultTxt = document.getElementById('round-result-message');
 const gameResultTxt = document.getElementById('game-result-message')
@@ -121,19 +124,20 @@ function playRound(playerSelection) {
                     else
                         gameResultTxt.textContent = "YOU LOST";
                     ++currentRound;
-        
+                    
+                    resetButton.className = 'text-in-animation';
                     gameResultTxt.className = 'text-in-animation';
                 }
                 else {
                     ++currentRound;
                     changeRound();
+                    canClick = true;
                 }
-                canClick = true;
             }, 300);
 
-        }, 400) 
+        }, 400); 
         
-    }, 1500)
+    }, 1500);
 }
 
 // Icon Elements
@@ -180,4 +184,19 @@ paperButton.addEventListener('click', () => {
         canClick = false;
         playRound('paper');
     }
+})
+
+resetButton.addEventListener('click', () => {
+    resetButton.className = 'text-out-animation';
+    gameResultTxt.className = 'text-out-animation';
+    setTimeout(() => {
+        // Resetting every variable
+        playerScore = 0;
+        computerScore = 0;
+        currentRound = 1;
+        canClick = true;
+
+        changeScore();
+        changeRound();
+    }, 300)
 })
